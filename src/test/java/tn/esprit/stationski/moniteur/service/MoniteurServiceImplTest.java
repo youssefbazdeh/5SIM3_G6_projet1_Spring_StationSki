@@ -1,5 +1,6 @@
 package tn.esprit.stationski.moniteur.service;
 
+import com.example.stationski.StationSkiApplication;
 import com.example.stationski.entities.Moniteur;
 import com.example.stationski.repositories.MoniteurRepository;
 import com.example.stationski.services.MoniteurServiceImpl;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@SpringBootTest
+@SpringBootTest(classes = StationSkiApplication.class)
 @ExtendWith(MockitoExtension.class)
 public class MoniteurServiceImplTest {
     @Mock
