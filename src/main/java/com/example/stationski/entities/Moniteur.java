@@ -30,4 +30,6 @@ public class Moniteur implements Serializable {
     @JsonIgnore
     private Set<Cours> coursSet;
 
+    public Moniteur(String f1, String l1) {
+    }
 }
