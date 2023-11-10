@@ -1,18 +1,8 @@
 version: '3'
 
 services:
-  5sim3-g6-projet1-backend:
-    image: mohamedamineregaia/5sim3-g6-projet1-1.0
-    ports:
-      - 6868:8089
-    stdin_open: true
-    tty: true
-    volumes:
-    - test:/root/.m2
-    depends_on:
-      - mysqldb
   mysqldb:
-    image: mysql:5.7
+    image: arm64v8/mysql:8.0.34
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=stationSki
@@ -22,5 +12,4 @@ services:
       - db:/var/lib/mysql
 volumes:
   db:
-  test:
 
