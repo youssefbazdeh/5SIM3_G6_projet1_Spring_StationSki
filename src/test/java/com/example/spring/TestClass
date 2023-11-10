@@ -1,3 +1,5 @@
+package com.example.stationski;
+
 import com.example.stationski.entities.*;
 import com.example.stationski.repositories.CoursRepository;
 import com.example.stationski.repositories.PisteRepository;
