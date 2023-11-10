@@ -6,34 +6,41 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.mockito.InjectMocks;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.Assertions;
-import java.time.LocalDate;
-import java.util.Optional;
+import org.junit.jupiter.api.extension.ExtendWith;
+import com.example.stationski.repositories.AbonnementRepository;
+import com.example.stationski.services.AbonnementService;
+import com.example.stationski.entities.Abonnement;
+import com.example.stationski.entities.TypeAbonnement;
 
-import com.example.stationski.repositories.ISubscriptionRepository;
-import com.example.stationski.services.SubscriptionServicesImpl;
-import com.example.stationski.entities.Subscription;
-import com.example.stationski.entities.TypeSubscription;
+import java.util.Collections;
+import java.util.Set;
 
 @SpringBootTest
 @ExtendWith({MockitoExtension.class, SpringExtension.class})
 class GestionStationSkiApplicationTests {
 
     @Mock
-    ISubscriptionRepository subscriptionRepository;
+    AbonnementRepository abonnementRepository;
 
     @InjectMocks
-    SubscriptionServicesImpl subscriptionService;
+    AbonnementService abonnementService;
 
-Subscription sub = new Subscription(2L, LocalDate.now(), LocalDate.now(), 55.0f, TypeSubscription.ANNUAL);
+    @Test
+    public void testRetrieveAbonnementByType() {
+        // Setup
+        TypeAbonnement testType = TypeAbonnement.MENSUEL; // Example type, change as needed
+        Set<Abonnement> expectedSet = Collections.singleton(new Abonnement());
+        
+        // Mocking
+        Mockito.when(abonnementRepository.findByTypeAbon(testType)).thenReturn(expectedSet);
 
-@Test
-public void testRetrieveSub() {
-    Mockito.when(subscriptionRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(sub));
-    Subscription sub1 = subscriptionService.retrieveSubscriptionById(1L);
-    Assertions.assertNotNull(sub1);
-}
+        // Execution
+        Set<Abonnement> result = abonnementService.getAbonnementByType(testType);
 
+        // Assertion
+        Assertions.assertNotNull(result);
+        Assertions.assertFalse(result.isEmpty());
+        Assertions.assertEquals(expectedSet, result);
+    }
 }
