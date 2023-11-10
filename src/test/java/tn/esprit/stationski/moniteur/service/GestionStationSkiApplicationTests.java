@@ -1,4 +1,4 @@
-package tn.esprit.spring;
+package com.example.stationski;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -12,10 +12,10 @@ import org.junit.jupiter.api.Assertions;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import tn.esprit.spring.repositories.ISubscriptionRepository;
-import tn.esprit.spring.services.SubscriptionServicesImpl;
-import tn.esprit.spring.entities.Subscription;
-import tn.esprit.spring.entities.TypeSubscription;
+import com.example.stationski.repositories.ISubscriptionRepository;
+import com.example.stationski.services.SubscriptionServicesImpl;
+import com.example.stationski.entities.Subscription;
+import com.example.stationski.entities.TypeSubscription;
 
 @SpringBootTest
 @ExtendWith({MockitoExtension.class, SpringExtension.class})
