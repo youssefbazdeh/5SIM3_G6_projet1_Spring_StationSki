@@ -1,6 +1,17 @@
 version: '3'
 
 services:
+  backend_spring:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8089:8089
+    depends_on:
+      - mysqldb
+    volumes:
+      - ./backend_spring_data:/app/data
+
   mysqldb:
     image: arm64v8/mysql:8.0.34
     environment:
