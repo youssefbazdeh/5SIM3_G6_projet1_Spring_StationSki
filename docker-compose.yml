@@ -1,16 +1,17 @@
 version: '3'
 
 services:
-  5nids2-g9-projet1-backend:
-    image: mustaphabazdeh/5nids2-g9-projet1-1.0
+  backend_spring:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - 6868:8089
-    stdin_open: true
-    tty: true
-    volumes:
-    - test:/root/.m2
+      - 8089:8089
     depends_on:
       - mysqldb
+    volumes:
+      - ./backend_spring_data:/app/data
+
   mysqldb:
     image: mysql:5.7
     environment:
@@ -22,5 +23,6 @@ services:
       - db:/var/lib/mysql
 volumes:
   db:
-  test:
+  backend_spring_data:
+
 
