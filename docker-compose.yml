@@ -2,11 +2,13 @@ version: '3'
 
 services:
   backend_spring:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: mohamedaminerg/mohamedamineregaia_stationski:1.1.0
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/stationSki
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
     ports:
-      - 8089:8089
+      - "8089:8089"
     depends_on:
       - mysqldb
     volumes:
@@ -15,10 +17,10 @@ services:
   mysqldb:
     image: arm64v8/mysql:8.0.34
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=stationSki
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'stationSki'
     ports:
-      - 3307:3307
+      - "3307:3307"
     volumes:
       - db:/var/lib/mysql
 volumes:
