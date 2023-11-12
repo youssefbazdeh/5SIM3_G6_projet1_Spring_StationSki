@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SkieurService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">stationSki</a> &gt; <a href="index.source.html" class="el_package">com.example.stationski.services</a> &gt; <span class="el_source">SkieurService.java</span></div><h1>SkieurService.java</h1><pre class="source lang-java linenums">package com.example.stationski.services;
+
+import com.example.stationski.entities.*;
+import com.example.stationski.repositories.CoursRepository;
+import com.example.stationski.repositories.IPisteRepository;
+import com.example.stationski.repositories.SkieurRepository;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Service
+<span class="nc" id="L17">@AllArgsConstructor</span>
+<span class="nc" id="L18">@Slf4j</span>
+public class SkieurService implements ISkieurService{
+
+    SkieurRepository skieurRepository;
+    IPisteRepository pisteRepository;
+    CoursRepository coursRepository;
+    @Transactional
+    public Skieur assignSkieurToPiste(Long numSkieur, Long numPiste) {
+<span class="nc" id="L26">        log.info(&quot;debut methode assignSkieurToPiste&quot;);</span>
+<span class="nc" id="L27">        Skieur skieur = skieurRepository.findByNumSkieur(numSkieur);</span>
+<span class="nc" id="L28">        Piste piste =pisteRepository.findByNumPiste(numPiste);</span>
+<span class="nc" id="L29">        log.info(&quot;skieur &quot;+skieur.getNumSkieur());</span>
+<span class="nc" id="L30">        log.info(&quot;piste &quot;+piste.getNamePiste());</span>
+<span class="nc" id="L31">        skieur.getPistes().add(piste);</span>
+<span class="nc" id="L32">        log.info(&quot;fin methode assignSkieurToPiste&quot;);</span>
+
+<span class="nc" id="L34">        return skieur;</span>
+    }
+
+    @Transactional
+    public Skieur addSkieurAndAssignToCourse(Skieur skieur, Long numCourse) {
+<span class="nc" id="L39">        log.info(&quot;debut methode addSkieurAndAssignToCourse&quot;);</span>
+<span class="nc" id="L40">        Skieur.builder().nomS(&quot;sahli&quot;).numSkieur(123L).build();</span>
+        // t1 = date systeme
+<span class="nc" id="L42">        Cours cours = coursRepository.findByNumCours(numCourse);</span>
+<span class="nc" id="L43">        Skieur s = skieurRepository.save(skieur);</span>
+<span class="nc" id="L44">        Set&lt;Inscription&gt; inscriptions = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L45">        inscriptions= s.getInscriptions();</span>
+<span class="nc" id="L46">        inscriptions.stream().forEach(</span>
+                inscription -&gt;  {
+<span class="nc" id="L48">                    inscription.setCours(cours);</span>
+                  //  inscription.setSkieur(s);
+<span class="nc" id="L50">                }</span>
+
+        );
+<span class="nc" id="L53">        log.info(&quot;fin methode addSkieurAndAssignToCourse&quot;);</span>
+      //  t2= date sys - t1
+<span class="nc" id="L55">        return null;</span>
+    }
+
+    @Override
+    public List&lt;Skieur&gt; retrieveSkieursByTypeAbonnement(TypeAbonnement typeAbonnement) {
+<span class="nc" id="L60">        return skieurRepository.findByAbonnementTypeAbon(typeAbonnement);</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

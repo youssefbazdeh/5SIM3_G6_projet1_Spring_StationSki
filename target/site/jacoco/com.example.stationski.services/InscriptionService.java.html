@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InscriptionService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">stationSki</a> &gt; <a href="index.source.html" class="el_package">com.example.stationski.services</a> &gt; <span class="el_source">InscriptionService.java</span></div><h1>InscriptionService.java</h1><pre class="source lang-java linenums">package com.example.stationski.services;
+
+import com.example.stationski.configs.UtilityFonction;
+import com.example.stationski.entities.*;
+import com.example.stationski.repositories.CoursRepository;
+import com.example.stationski.repositories.InscriptionRepository;
+import com.example.stationski.repositories.SkieurRepository;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
+@Service
+<span class="nc" id="L18">@AllArgsConstructor</span>
+<span class="nc" id="L19">@Slf4j</span>
+public class InscriptionService implements IInscriptionService{
+    InscriptionRepository inscriptionRepository;
+    SkieurRepository skieurRepository;
+    CoursRepository coursRepository;
+    @Override
+    public Set&lt;Inscription&gt; getSubscriptionByType(TypeAbonnement typeAbonnement) {
+<span class="nc" id="L26">        return null;</span>
+    }
+
+    @Override
+    public Inscription assignInscriptionToCours(Long numInscription, Long numCours) {
+<span class="nc" id="L31">        Inscription inscription=inscriptionRepository.findByNumInscription(numInscription);</span>
+<span class="nc" id="L32">        Cours cours=coursRepository.findByNumCours(numCours);</span>
+<span class="nc" id="L33">        inscription.setCours(cours);</span>
+<span class="nc" id="L34">        inscriptionRepository.save(inscription);</span>
+<span class="nc" id="L35">        return inscription;</span>
+    }
+
+    @Transactional
+    public Inscription addInscriptionAndAssignToSkieurAndCourse(Inscription inscription, Long numSkieur, Long numCours) {
+
+<span class="nc" id="L41">        Cours cours = coursRepository.findByNumCours(numCours);</span>
+<span class="nc" id="L42">        Skieur skieur = skieurRepository.findByNumSkieur(numSkieur);</span>
+<span class="nc" id="L43">        int ageSkieur = UtilityFonction.calculateAge(skieur.getDateNaissance());</span>
+<span class="nc" id="L44">        log.info(&quot;age skieur : &quot;+ageSkieur);</span>
+<span class="nc bnc" id="L45" title="All 4 branches missed.">        if(cours.getTypeCours().equals(TypeCours.COLLECTIF_ADULTE) &amp; ageSkieur&gt;18) {</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (cours.getInscriptions().size() &lt; 6) {</span>
+<span class="nc" id="L47">                Inscription ins = inscriptionRepository.save(inscription);</span>
+<span class="nc" id="L48">                ins.setSkieur(skieur);</span>
+<span class="nc" id="L49">                log.info(&quot;le nombre d inscriptions en cours est &quot; + cours.getInscriptions().size());</span>
+<span class="nc" id="L50">                ins.setCours(cours);</span>
+<span class="nc" id="L51">            }</span>
+        }
+<span class="nc bnc" id="L53" title="All 4 branches missed.">         else if (cours.getTypeCours().equals(TypeCours.COLLECTIF_ENFANT) &amp; ageSkieur&lt;18) {</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if (cours.getInscriptions().size() &lt; 6) {</span>
+<span class="nc" id="L55">                Inscription ins = inscriptionRepository.save(inscription);</span>
+<span class="nc" id="L56">                ins.setSkieur(skieur);</span>
+<span class="nc" id="L57">                log.info(&quot;le nombre d inscriptions en cours est &quot; + cours.getInscriptions().size());</span>
+<span class="nc" id="L58">                ins.setCours(cours);</span>
+<span class="nc" id="L59">            }</span>
+        }
+            else {
+<span class="nc" id="L62">                log.info(&quot;le nombre d'inscription maximal à ce cours est atteint ou age incompatible&quot; +</span>
+                        &quot; avec le cours&quot;);
+            }
+<span class="nc" id="L65">        return inscription;</span>
+    }
+
+    @Override
+    public List&lt;Integer&gt; numWeeksCoursOfMoniteurBySupport(Long numInstructor, Support support) {
+<span class="nc" id="L70">        return inscriptionRepository.numWeeksCoursOfMoniteurBySupport(numInstructor, support);</span>
+
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

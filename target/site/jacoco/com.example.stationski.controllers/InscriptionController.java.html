@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InscriptionController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">stationSki</a> &gt; <a href="index.source.html" class="el_package">com.example.stationski.controllers</a> &gt; <span class="el_source">InscriptionController.java</span></div><h1>InscriptionController.java</h1><pre class="source lang-java linenums">package com.example.stationski.controllers;
+
+import com.example.stationski.entities.Inscription;
+import com.example.stationski.entities.Skieur;
+import com.example.stationski.entities.Support;
+import com.example.stationski.services.IInscriptionService;
+import io.swagger.v3.oas.annotations.Operation;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@RestController
+<span class="nc" id="L15"> @AllArgsConstructor</span>
+@RequestMapping(&quot;/inscription&quot;)
+
+public class InscriptionController {
+    IInscriptionService inscriptionService;
+
+
+    // http://localhost:8089/stationSki/inscription/addInscriptionAndAssignToSkieurAndCourse/4/27
+    @PostMapping(&quot;/addInscriptionAndAssignToSkieurAndCourse/{numSkieur}/{numCours}&quot;)
+    public Inscription addSkieurAndAssignToCourse(@RequestBody Inscription inscription,
+                                                  @PathVariable(&quot;numSkieur&quot;)Long numSkieur,
+                                                  @PathVariable(&quot;numCours&quot;)Long numCours) {
+<span class="nc" id="L27">        Inscription ins = inscriptionService.addInscriptionAndAssignToSkieurAndCourse(inscription,numSkieur,numCours);</span>
+<span class="nc" id="L28">        return ins;</span>
+    }
+
+    // http://localhost:8089/stationSki/inscription/assignInscriptionToCours/4/27
+    @PutMapping(&quot;/assignInscriptionToCours/{numInscription}/{numCours}&quot;)
+    public Inscription assignInscriptionToCours(@PathVariable(&quot;numInscription&quot;) Long numInscription,@PathVariable(&quot;numCours&quot;) Long numCours)
+    {
+<span class="nc" id="L35">        return  inscriptionService.assignInscriptionToCours(numInscription,numCours);</span>
+    }
+
+    @GetMapping(&quot;/numWeeksCoursOfMoniteurBySupport/{numMoniteur}/{support}&quot;)
+    public List&lt;Integer&gt; numWeeksCoursOfMoniteurBySupport(@PathVariable(&quot;numMoniteur&quot;)Long numMoniteur,
+                                                             @PathVariable(&quot;support&quot;) Support support) {
+<span class="nc" id="L41">        return inscriptionService.numWeeksCoursOfMoniteurBySupport(numMoniteur,support);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
