@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -30,4 +31,6 @@ public class Moniteur implements Serializable {
     @JsonIgnore
     private Set<Cours> coursSet;
 
+    public <E> Moniteur(int i, String moniteur1, String prenom1, int i1, HashSet<E> es) {
+    }
 }
