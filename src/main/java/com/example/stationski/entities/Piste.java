@@ -1,35 +1,38 @@
 package com.example.stationski.entities;
 
+import java.io.Serializable;
+import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+
+
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Set;
-
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level=AccessLevel.PRIVATE)
+@Entity
 public class Piste implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idPiste")
-    private Integer idPiste; // Clé primaire
-    private Long numPiste;
-    private String nomPiste;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    Long numPiste;
+    String namePiste;
     @Enumerated(EnumType.STRING)
-    private Couleur couleur;
-    private Integer longeur;
-    private Integer pente;
+    Color color;
+    int length;
+    int slope;
 
-    @ManyToMany(mappedBy = "pistes")
-    @JsonIgnore
-    private Set<Skieur> skieurs;
+    @ManyToMany(mappedBy= "pistes")
+    private Set<Skieur> skiers;
+
+
+
 }

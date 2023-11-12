@@ -2,7 +2,7 @@ package com.example.stationski.services;
 
 import com.example.stationski.entities.*;
 import com.example.stationski.repositories.CoursRepository;
-import com.example.stationski.repositories.PisteRepository;
+import com.example.stationski.repositories.IPisteRepository;
 import com.example.stationski.repositories.SkieurRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import java.util.Set;
 public class SkieurService implements ISkieurService{
 
     SkieurRepository skieurRepository;
-    PisteRepository pisteRepository;
+    IPisteRepository pisteRepository;
     CoursRepository coursRepository;
     @Transactional
     public Skieur assignSkieurToPiste(Long numSkieur, Long numPiste) {
@@ -27,7 +27,7 @@ public class SkieurService implements ISkieurService{
         Skieur skieur = skieurRepository.findByNumSkieur(numSkieur);
         Piste piste =pisteRepository.findByNumPiste(numPiste);
         log.info("skieur "+skieur.getNumSkieur());
-        log.info("piste "+piste.getNomPiste());
+        log.info("piste "+piste.getNamePiste());
         skieur.getPistes().add(piste);
         log.info("fin methode assignSkieurToPiste");
 
@@ -60,17 +60,5 @@ public class SkieurService implements ISkieurService{
         return skieurRepository.findByAbonnementTypeAbon(typeAbonnement);
     }
 
-    @Override
-    public HashMap<Couleur,Integer> nombreSkieursParCouleurPiste() {
-        log.info("debut methode nombreSkieursParCouleurPiste");
-        HashMap<Couleur,Integer> nombreSkieursParCouleurPiste = new HashMap<>();
-        Couleur couleurs[] = Couleur.values();
-        for(Couleur c: couleurs) {
-            nombreSkieursParCouleurPiste.put(c,skieurRepository.skieursByCouleurPiste(c).size());
 
-        }
-        log.info("fin methode nombreSkieursParCouleurPiste");
-
-        return nombreSkieursParCouleurPiste;
-    }
 }

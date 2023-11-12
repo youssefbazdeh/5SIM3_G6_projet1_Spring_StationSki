@@ -1,6 +1,6 @@
 package com.example.stationski.services;
 
-import com.example.stationski.entities.Couleur;
+import com.example.stationski.entities.Color;
 import com.example.stationski.entities.Skieur;
 import com.example.stationski.entities.TypeAbonnement;
 
@@ -16,7 +16,6 @@ public interface ISkieurService {
 
     List<Skieur> retrieveSkieursByTypeAbonnement(TypeAbonnement typeAbonnement);
 
-    HashMap<Couleur,Integer>  nombreSkieursParCouleurPiste();
 
 
 }

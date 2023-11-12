@@ -39,10 +39,6 @@ public class SkieurController {
     }
 
     // http://localhost:8089/stationSki/skieur/nombreSkieursParCouleurPiste
-    @GetMapping("/nombreSkieursParCouleurPiste")
-    public  HashMap<Couleur,Integer> nombreSkieursParCouleurPiste() {
-        HashMap<Couleur,Integer> nombreSkieursParCouleurPiste = skieurService.nombreSkieursParCouleurPiste();
-        return nombreSkieursParCouleurPiste;
-    }
+
 
 }
