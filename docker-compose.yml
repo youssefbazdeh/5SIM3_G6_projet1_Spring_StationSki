@@ -3,7 +3,7 @@ version: '3'
 services:
 
   mysqldb:
-    image: mysql:latest
+    image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: 'root'
       MYSQL_DATABASE: 'stationSki'
@@ -13,7 +13,9 @@ services:
       - db:/var/lib/mysql
 
   backend_spring:
-    image: omar823/stationski:1.1.0
+    build:
+      context: ./
+      dockerfile: Dockerfile
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/stationSki
       SPRING_DATASOURCE_USERNAME: root
