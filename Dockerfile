@@ -6,8 +6,13 @@ EXPOSE 8089
 
 
 # Copy the JAR file from the local target directory
-COPY target/stationSki-1.1.0.jar stationSki-1.1.0.jar
+#COPY target/stationSki-1.1.0.jar stationSki-1.1.0.jar
 
 # Command to run the application
-ENTRYPOINT ["java", "-jar", "stationSki-1.1.0.jar"]
+#ENTRYPOINT ["java", "-jar", "stationSki-1.1.0.jar"]
 
+ARG JAR_FILE=target/*.jar
+
+COPY ${JAR_FILE} stationSki-1.1.0.jar
+
+ENTRYPOINT ["java","-jar","/stationSki-1.1.0.jar"]
