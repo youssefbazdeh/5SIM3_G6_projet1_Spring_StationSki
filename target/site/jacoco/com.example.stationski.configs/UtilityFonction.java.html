@@ -3,19 +3,22 @@
 import java.time.LocalDate;
 import java.time.Period;
 
-<span class="nc" id="L6">public class UtilityFonction {</span>
+public class UtilityFonction {
+
+    private UtilityFonction() {
+    }
 
     public static int calculateAge(LocalDate dob)
     {
 
-<span class="nc" id="L11">        LocalDate curDate = LocalDate.now();</span>
-<span class="nc bnc" id="L12" title="All 4 branches missed.">        if ((dob != null) &amp;&amp; (curDate != null))</span>
+<span class="nc" id="L14">        LocalDate curDate = LocalDate.now();</span>
+<span class="nc bnc" id="L15" title="All 4 branches missed.">        if ((dob != null) &amp;&amp; (curDate != null))</span>
         {
-<span class="nc" id="L14">            return Period.between(dob, curDate).getYears();</span>
+<span class="nc" id="L17">            return Period.between(dob, curDate).getYears();</span>
         }
         else
         {
-<span class="nc" id="L18">            return 0;</span>
+<span class="nc" id="L21">            return 0;</span>
         }
     }
 }
