@@ -5,6 +5,9 @@ import java.time.Period;
 
 public class UtilityFonction {
 
+    private UtilityFonction() {
+    }
+
     public static int calculateAge(LocalDate dob)
     {
 
