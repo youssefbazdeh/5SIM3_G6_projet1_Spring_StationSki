@@ -1,14 +1,13 @@
-# Use the base image with Java Runtime
-FROM openjdk:11-jre-slim
+FROM openjdk:8-jdk-alpine as mvn-build
+WORKDIR /app/build
+COPY ./src ./src
+COPY pom.xml .
+COPY .mvn .mvn
+COPY mvnw .
+RUN chmod +x ./mvnw
+RUN ./mvnw clean install -Dmaven.test.skip=true
 
-# Expose the port the app runs on
-EXPOSE 8089
-
-# Create a directory for the app
+FROM openjdk:8-jre-alpine
 WORKDIR /app
-
-# Copy the JAR file from the local target directory
-COPY target/stationSki-1.1.0.jar /app/
-
-# Command to run the application
-ENTRYPOINT ["java", "-jar", "stationSki-1.1.0.jar"]
+COPY --from=mvn-build /app/build/target/*.jar ./spring-app.jar
+CMD ["java", "-jar", "/app/spring-app.jar"]
