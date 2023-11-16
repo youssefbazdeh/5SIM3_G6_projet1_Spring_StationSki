@@ -12,7 +12,7 @@ services:
       - 3306:3306
     volumes:
       - db:/var/lib/mysql
-  Achat:
+  stationSki:
     depends_on:
       - mysqldb
     image: saligia13/stationSki-1.1.0
