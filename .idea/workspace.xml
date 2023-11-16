@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e1e6065-9f90-45a7-8a2d-f1e55017b13a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stationski/entities/Piste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/stationski/entities/Piste.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -151,7 +155,7 @@
       <workItem from="1699810147039" duration="6991000" />
       <workItem from="1699905714512" duration="1862000" />
       <workItem from="1700081225259" duration="3944000" />
-      <workItem from="1700086250194" duration="5986000" />
+      <workItem from="1700086250194" duration="6942000" />
     </task>
     <servers />
   </component>

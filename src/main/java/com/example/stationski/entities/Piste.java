@@ -26,7 +26,7 @@ public class Piste implements Serializable {
     Long numPiste;
     String namePiste;
     @Enumerated(EnumType.STRING)
-    Color color;
+    Color Color;
     int length;
     int slope;
 
