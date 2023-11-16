@@ -20,5 +20,11 @@ Asrc/main/java/com/example/stationski/configs/UtilityFonction.java,4\3\438854fc
 Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+B
+docker-compose.yml,3\5\35b8c13cf2eb2a194eada000eb310d65aed53b2a
+h
+8src/main/java/com/example/stationski/entities/Color.java,1\7\17ab0ee0b1bd7e7c450ce9e498c88c624e0d30d5
+w
+Gsrc/main/java/com/example/stationski/repositories/IPisteRepository.java,f\d\fd1818fbf617f483adc3f3087dd845183a91f46f
 n
->src/test/java/com/example/stationski/ServicePisteLmplTest.java,5\e\5e5d0eca262e45b1f24b8bbdf8a7982e5068a97e
+>src/test/java/com/example/stationski/ServicePisteImplTest.java,9\6\96c14cd2442325b4f6eba10760b107bcb482f674
